@@ -1,0 +1,11 @@
+<div class="p-4 text-center">
+    <h2 class="text-2xl mb-4" [ngClass]="{'text-green-500': data.isSuccess, 'text-red-500': !data.isSuccess}">
+      <mat-icon [ngClass]="{'text-green-500': data.isSuccess, 'text-red-500': !data.isSuccess}" style="font-size: 40px;">
+        {{ data.isSuccess ? 'check_circle' : 'error' }}
+      </mat-icon>
+      {{ data.isSuccess ? 'Thành công' : 'Thất bại' }}
+    </h2>
+    <p>{{ data.message }}</p>
+    <button mat-button (click)="closeDialog()" class="mt-4" color="primary">Đóng</button>
+  </div>
+  
