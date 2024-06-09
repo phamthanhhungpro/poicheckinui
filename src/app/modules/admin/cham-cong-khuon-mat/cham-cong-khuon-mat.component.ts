@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { CheckInDialogComponent } from '../check-in-dialog/check-in-dialog.component';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-face-check-in',
@@ -50,13 +51,14 @@ export class ChamCongKhuonMatComponent implements OnInit {
   }
 
   private checkInWithFace(imageBase64: string): void {
-    const apiUrl = 'https://localhost:7181/api/FaceRecognition/checkin'; // Replace with your API endpoint
+    const baseUrl = environment.hrmApiUrl + 'FaceRecognition';
+    const apiUrl = `${baseUrl}/checkin`;
     this.http.post<any>(apiUrl, { image: imageBase64 }).subscribe(
       response => {
         this.openDialog(`${response.message} Đã chấm công thành công !`, true);
       },
       error => {
-        this.openDialog('Chấm công thất bại!', false);
+        this.openDialog('Chấm công thất bại! Hãy bỏ mũ, kính và thử lại', false);
       }
     );
   }
